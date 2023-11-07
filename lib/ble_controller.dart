@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BleController extends GetxController {
-  late StreamSubscription<List<ScanResult>> _scanSubscription;
+  StreamSubscription<List<ScanResult>>? _scanSubscription;
 
   Future scanDevices() async {
     var blePermission = await Permission.bluetoothScan.status;
@@ -42,8 +42,8 @@ class BleController extends GetxController {
 
   void stopScan() async {
     if (_scanSubscription != null) {
-      await _scanSubscription.cancel();
-      _scanSubscription = null!;
+      await _scanSubscription!.cancel();
+      _scanSubscription = null;
     }
     await FlutterBluePlus.stopScan();
   }
