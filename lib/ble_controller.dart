@@ -35,17 +35,8 @@ class BleController extends GetxController {
       }
     });
     FlutterBluePlus.startScan(
-      timeout: Duration(minutes: 1), // Increase the scan duration
       androidUsesFineLocation: true,
     );
-  }
-
-  void stopScan() async {
-    if (_scanSubscription != null) {
-      await _scanSubscription!.cancel();
-      _scanSubscription = null;
-    }
-    await FlutterBluePlus.stopScan();
   }
 
   Stream<List<ScanResult>> get scanResults => FlutterBluePlus.scanResults;
